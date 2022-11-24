@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+let newArray = [];
+
 function QuizComponent() {
   const questions = [
     {
@@ -51,31 +53,37 @@ function QuizComponent() {
   const [checked, setChecked] = useState([]);
 
 
-
   function handleCheck(e) {
-        let answersArray = [...checked];
-        if (e.target.checked) {
-            answersArray = [...checked, e.target.value];
-        } else {
-            answersArray.splice(checked.indexOf(e.target.value), 1);
-        }
-        setChecked(answersArray);
-    };
+    let answersArray = [...checked];
+    if (e.target.checked) {
+      answersArray = [...checked, e.target.value];
+    } else {
+      answersArray.splice(checked.indexOf(e.target.value), 1);
+    }
+    console.log(newArray);
 
+    setChecked(answersArray);
+
+  }
 
   const nextQuestion = (e) => {
     e.preventDefault();
-    setCurrentQuestion(currentQuestion + 1)
-    let listElements = document.querySelector('ul').childNodes;
+    let answersArray = [...checked];
+
+    let submittedAnswers = {
+        id: questions[currentQuestion].questionId,
+        value: [...checked],
+    };
+    newArray.unshift(submittedAnswers);
+    console.log(newArray);
+
+    setCurrentQuestion(currentQuestion + 1);
+    let listElements = document.querySelector("ul").childNodes;
     listElements.forEach((item) => {
-      item.querySelector('input').checked = false;
+      item.querySelector("input").checked = false;
     });
-
-
-    
-    
-  }
-
+    setChecked([]);
+  };
 
   return (
     <div>
@@ -86,13 +94,19 @@ function QuizComponent() {
           {questions[currentQuestion].options.map((option) => {
             return (
               <div>
-                <input key={option.questionId} value={option.text} defaultChecked={false} type="checkbox" onClick={handleCheck} />
+                <input
+                  key={option.questionId}
+                  value={option.text}
+                  defaultChecked={false}
+                  type="checkbox"
+                  onClick={handleCheck}
+                />
                 <span key={option.id}>{option.text}</span>
               </div>
             );
-        })}
+          })}
         </ul>
-        <button onClick={nextQuestion} >Submit</button>
+        <button onClick={nextQuestion}>Submit</button>
       </div>
     </div>
   );
