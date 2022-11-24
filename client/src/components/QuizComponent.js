@@ -4,6 +4,7 @@ function QuizComponent() {
   const questions = [
     {
       text: "What is your favorite book genre?",
+      questionId: 0,
       options: [
         { id: 0, text: "Romance" },
         { id: 1, text: "Detective/Mystery" },
@@ -17,6 +18,7 @@ function QuizComponent() {
     },
     {
       text: "What is your favorite kind of food?",
+      questionId: 1,
       options: [
         { id: 0, text: "Italian" },
         { id: 1, text: "Asain" },
@@ -30,6 +32,7 @@ function QuizComponent() {
     },
     {
       text: "What is your favorite genre of movie?",
+      questionId: 2,
       options: [
         { id: 0, text: "Horror" },
         { id: 1, text: "Detective/Mystery" },
@@ -45,25 +48,34 @@ function QuizComponent() {
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
-  const [textColor, setTextColor] = useState("green");
-  const [isBlack, setIsBlack] = useState(true);
-
-  const handleChangeTextColor = (e) => {
-    setIsBlack(!isBlack);
-    setTextColor(isBlack ? "00FF00" : "green");
-    console.log("CLICKCLICK")
-  };
-
-  const optionClicked = (e) => {
-    // Needs code that selects the answer and stores it in a value to put in the database. I will temporarily store it in a variable.
-
-    const newArray = [];
-    const bookArray = [];
-    const foodArray = [];
-    const movieArray = [];
+  const [checked, setChecked] = useState([]);
 
 
-  };
+
+  function handleCheck(e) {
+        let answersArray = [...checked];
+        if (e.target.checked) {
+            answersArray = [...checked, e.target.value];
+        } else {
+            answersArray.splice(checked.indexOf(e.target.value), 1);
+        }
+        setChecked(answersArray);
+    };
+
+
+  const nextQuestion = (e) => {
+    e.preventDefault();
+    setCurrentQuestion(currentQuestion + 1)
+    let listElements = document.querySelector('ul').childNodes;
+    listElements.forEach((item) => {
+      item.querySelector('input').checked = false;
+    });
+
+
+    
+    
+  }
+
 
   return (
     <div>
@@ -73,18 +85,14 @@ function QuizComponent() {
         <ul>
           {questions[currentQuestion].options.map((option) => {
             return (
-              <li value={isBlack} onChange={handleChangeTextColor}
-                onClick={() => {
-                  optionClicked();
-                  handleChangeTextColor();
-                }}
-                key={option.id}
-              >
-                {option.text}
-              </li>
+              <div>
+                <input key={option.questionId} value={option.text} defaultChecked={false} type="checkbox" onClick={handleCheck} />
+                <span key={option.id}>{option.text}</span>
+              </div>
             );
-          })}
+        })}
         </ul>
+        <button onClick={nextQuestion} >Submit</button>
       </div>
     </div>
   );
