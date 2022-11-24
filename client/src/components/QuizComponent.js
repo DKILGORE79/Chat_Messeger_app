@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 let newArray = [];
 
 function QuizComponent() {
+
   const questions = [
     {
       text: "What is your favorite book genre?",
@@ -48,10 +49,14 @@ function QuizComponent() {
     },
   ];
 
+  function finishSignup(newArray) {
+    // THIS FUNCTION WILL PASS IN newArray to then get it in the DB. This function will also move the user into a different page.
+    // some sort of code that finds the specific answer by the questionId which will 0, 1, or 2, and pushes it to the sequelize DB.
+  }
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
   const [checked, setChecked] = useState([]);
-
 
   function handleCheck(e) {
     let answersArray = [...checked];
@@ -60,10 +65,7 @@ function QuizComponent() {
     } else {
       answersArray.splice(checked.indexOf(e.target.value), 1);
     }
-    console.log(newArray);
-
     setChecked(answersArray);
-
   }
 
   const nextQuestion = (e) => {
@@ -71,18 +73,31 @@ function QuizComponent() {
     let answersArray = [...checked];
 
     let submittedAnswers = {
-        id: questions[currentQuestion].questionId,
-        value: [...checked],
+      id: questions[currentQuestion].questionId,
+      value: [...checked],
     };
-    newArray.unshift(submittedAnswers);
-    console.log(newArray);
+    newArray.push(submittedAnswers);
 
-    setCurrentQuestion(currentQuestion + 1);
-    let listElements = document.querySelector("ul").childNodes;
-    listElements.forEach((item) => {
-      item.querySelector("input").checked = false;
-    });
-    setChecked([]);
+    if (questions[currentQuestion + 1] != undefined) {
+      setCurrentQuestion(currentQuestion + 1);
+      let listElements = document.querySelector("ul").childNodes;
+      listElements.forEach((item) => {
+        item.querySelector("input").checked = false;
+      });
+      setChecked([]);
+
+      if (questions[currentQuestion + 2] == undefined) {
+        document.querySelector("button").innerHTML = "Submit Answers";
+      }
+    } else {
+      //Handle form submission, newArray has what the database needs in terms of the final array.
+      console.log(newArray);
+
+      finishSignup(newArray);
+
+
+      //
+    }
   };
 
   return (
@@ -106,7 +121,7 @@ function QuizComponent() {
             );
           })}
         </ul>
-        <button onClick={nextQuestion}>Submit</button>
+        <button onClick={nextQuestion}>Next Question</button>
       </div>
     </div>
   );

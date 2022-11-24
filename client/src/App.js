@@ -27,7 +27,6 @@ class App extends Component {
     return (
       <div>
         <InitialSignUp />
-        {console.log("WORDS")}
       </div>
     );
   }
