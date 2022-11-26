@@ -1,35 +1,40 @@
-import React, { Component } from 'react';
+import React, { useState, createContext} from "react";
+import Container from "./Container";
+
+
 import './App.css';
 import InitialSignUp  from './components/InitialSignUp';
 
-class App extends Component {
-  state = {
-    data: null
+
+
+const ConnectionContext = createContext({
+  connection: null,
+  updateConnection: () => { }
+});
+const ChannelContext = createContext({
+  channel: null,
+  updateChannel: () => { }
+});
+
+const App = () => {
+  const [connection, setconnection] = useState(null);
+  const [channel, setChannel] = useState(null);
+  const updateConnection = conn => {
+    setconnection(conn);
   };
-
-  componentDidMount() {
-    this.callBackendAPI()
-      .then(res => this.setState({ data: res.express }))
-      .catch(err => console.log(err));
-  }
-  // fetching the GET route from the Express server which matches the GET route from server.js
-  callBackendAPI = async () => {
-    const response = await fetch('/express_backend');
-    const body = await response.json();
-
-    if (response.status !== 200) {
-      throw Error(body.message)
-    }
-    return body;
+  const updateChannel = chn => {
+    setChannel(chn);
   };
+  return (
+    <ConnectionContext.Provider value={{ connection, updateConnection }}>
+      <ChannelContext.Provider value={{ channel, updateChannel }}>
+        <Container />
+      </ChannelContext.Provider>
+    </ConnectionContext.Provider>
+  );
+};
 
-  render() {
-    return (
-      <div>
-        <InitialSignUp />
-      </div>
-    );
-  }
-}
 
+export const ConnectionConsumer = ConnectionContext.Consumer
+export const ChannelConsumer = ChannelContext.Consumer
 export default App;
