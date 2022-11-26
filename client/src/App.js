@@ -1,5 +1,10 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext} from "react";
 import Container from "./Container";
+
+
+import './App.css';
+import InitialSignUp  from './components/InitialSignUp';
+
 
 
 const ConnectionContext = createContext({
@@ -28,6 +33,7 @@ const App = () => {
     </ConnectionContext.Provider>
   );
 };
+
 
 export const ConnectionConsumer = ConnectionContext.Consumer
 export const ChannelConsumer = ChannelContext.Consumer
