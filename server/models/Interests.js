@@ -13,19 +13,9 @@ Interests.init(
       autoIncrement: true,
     },
 
-    books: {
-      type: DataTypes.STRING,
+    interests: {
+      type: DataTypes.JSON,
       allowNull: true,
-    },
-
-    foods: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-
-    movies: {
-      type: DataTypes.STRING,
-      allowNull: false,
     },
   },
   {
