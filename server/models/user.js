@@ -29,15 +29,6 @@ User.init(
       validate: {
         len: [8],
       },
-
-      interests_id: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: "interests",
-          key: "id",
-          unique: false,
-        },
-      },
     },
   },
   {
