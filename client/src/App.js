@@ -1,39 +1,24 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Home from './pages/Home'
+import Dashboard from './pages/Dashboard'
+import OnBoarding from './pages/OnBoarding'
+import {BrowserRouter, Route, Routes} from 'react-router-dom'
+import {useCookies} from 'react-cookie'
 
-class App extends Component {
-  state = {
-    data: null
-  };
+const App = () => {
+    const [cookies, setCookie, removeCookie] = useCookies(['user'])
 
-  componentDidMount() {
-    this.callBackendAPI()
-      .then(res => this.setState({ data: res.express }))
-      .catch(err => console.log(err));
-  }
-  // fetching the GET route from the Express server which matches the GET route from server.js
-  callBackendAPI = async () => {
-    const response = await fetch('/express_backend');
-    const body = await response.json();
+    const authToken = cookies.AuthToken
 
-    if (response.status !== 200) {
-      throw Error(body.message)
-    }
-    return body;
-  };
-
-  render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">{this.state.data}</p>
-      </div>
-    );
-  }
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Home/>}/>
+                {authToken && <Route path="/dashboard" element={<Dashboard />}/>}
+                {authToken && <Route path="/onboarding" element={<OnBoarding />}/>}
+
+            </Routes>
+        </BrowserRouter>
+    )
 }
 
-export default App;
+export default App

@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.dc22af46.css",
+    "main.js": "/static/js/main.b8025ee7.js",
+    "static/media/webp": "/static/media/6e9794bcedeecf5a8f8f41338a2a7345.ff072d00e381c7014b63.webp",
+    "static/media/color-logo-full.png": "/static/media/color-logo-full.b8b746792377e2305f3e.png",
+    "static/media/like-mindz.png": "/static/media/like-mindz.1499bfd9b9b50a397778.png",
+    "index.html": "/index.html",
+    "main.dc22af46.css.map": "/static/css/main.dc22af46.css.map",
+    "main.b8025ee7.js.map": "/static/js/main.b8025ee7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dc22af46.css",
+    "static/js/main.b8025ee7.js"
+  ]
+}
