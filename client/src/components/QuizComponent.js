@@ -52,6 +52,15 @@ function QuizComponent() {
   function finishSignup(newArray) {
     // THIS FUNCTION WILL PASS IN newArray to then get it in the DB. This function will also move the user into a different page.
     // some sort of code that finds the specific answer by the questionId which will 0, 1, or 2, and pushes it to the sequelize DB.
+
+    // Server URL GOES HERE
+    fetch("", {method: "POST", body: newArray}).then(s => { 
+      // Resave the user with the interest ID or Create the user with the interest ID
+      // s will have a generated ID -> which needs to be saved to the user in an additional fetch
+      // PUT or POST to the user 
+      // DO whatever after you save it
+      console.log('saved')
+    });
   }
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
