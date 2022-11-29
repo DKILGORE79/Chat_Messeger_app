@@ -60,7 +60,7 @@ video {
 }
 
 .sent p {
-  color: white;
+  color: rgb(177, 0, 171);
   background: #0b93f6;
   align-self: flex-end;
 }

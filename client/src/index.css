@@ -171,7 +171,7 @@ nav .logo-container .logo {
   margin: 10px 0;
 }
 
-.onboarding form .multiple-input-container {exit
+.onboarding form .multiple-input-container {
   display: flex;
   flex-direction: row;
 }
@@ -263,7 +263,7 @@ nav .logo-container .logo {
 /*-------- Chat Container --------*/
 .chat-container {
   background-color: #29abe2;
-  max-height: 500px;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -283,7 +283,7 @@ nav .logo-container .logo {
 .chat-container .option {
   border: none;
   background-color: rgb(255, 255, 255);
-  border-bottom: solid 4px rgb(243, 33, 33);
+  -webkit-text-fill-color: #29abe2;
   font-size: 20px;
   margin: 2px;
   padding: 10px;

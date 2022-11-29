@@ -82,10 +82,12 @@ function ChatRoom() {
     <>
      <Nav minimal={true} setShowModal={() => { }} showModal={false} />
       <main className="chat-container">
+        <div className="chat-container option">
         {messages &&
           messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
 
         <span ref={dummy}></span>
+        </div>
       </main>
 
        
