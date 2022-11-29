@@ -10,6 +10,10 @@ import { useAuthState } from "react-firebase-hooks/auth"
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 import OnBoarding from './pages/OnBoarding';
 import Home from './pages/Home';
+import Dashboard from './pages/Dashboard';
+import ChatContainer from './components/ChatContainer';
+import Nav from './components/Nav';
+import QuizComponent from './components/QuizComponent';
 
 firebase.initializeApp({
   apiKey: "AIzaSyCKyB1MNt4OocE6iJrLmzoh_7A-ebar20o",
@@ -37,8 +41,8 @@ function App() {
 
       <section>
         <BrowserRouter>
-          <Routes>
-            {user ? <Route path="/chat" element={<ChatRoom />} /> : <Route path="/" element={<Home />} />}
+          <Routes><Route path="/" element={<Home />}></Route>
+            {user ? <Route path="/chat" element={<OnBoarding />} /> : <Route path="/" element={<Home />} />}
           </Routes>
         </BrowserRouter>
       </section>
