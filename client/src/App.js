@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
-//import logo from './logo.svg';
+import "./index.css";
 import "./App.css";
-//import VideoChat from './components/room';
+
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import "firebase/compat/auth";
@@ -34,8 +34,6 @@ function App() {
 
   return (
     <div className="App">
-      <header><SignOut /></header>
-
       <section>
         <BrowserRouter>
           <Routes>
@@ -54,15 +52,6 @@ function App() {
   );
 }
 
-function SignOut() {
-  return (
-    auth.currentUser && (
-      <button className="sign-out" onClick={() => auth.signOut()}>
-        Sign Out
-      </button>
-    )
-  );
-}
 
 function ChatRoom() {
   const dummy = useRef();
@@ -91,21 +80,22 @@ function ChatRoom() {
 
   return (
     <>
-      <main>
+     <Nav minimal={true} setShowModal={() => { }} showModal={false} />
+      <main className="chat-container">
         {messages &&
           messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
 
         <span ref={dummy}></span>
       </main>
 
+       
       <form onSubmit={sendMessage}>
         <input
           value={formValue}
           onChange={(e) => setFormValue(e.target.value)}
           placeholder="say hello"
         />
-
-        <button type="submit" disabled={!formValue}>
+          <button className="primary-button" disabled={!formValue}>
           SEND
         </button>
       </form>
@@ -116,7 +106,7 @@ function ChatRoom() {
 function ChatMessage(props) {
   const { text, uid, photoURL } = props.message;
 
-  const messageClass = uid === auth.currentUser.uid ? "sent" : "received";
+  const messageClass = props.uid === auth.currentUser?.uid ? "sent" : "recieved";
 
   return (
     <>
@@ -124,6 +114,15 @@ function ChatMessage(props) {
         <p>{text}</p>
       </div>
     </>
+  );
+}
+function SignOut() {
+  return (
+    auth.currentUser && (
+      <button className="sign-out" onClick={() => auth.signOut()}>
+        Sign Out
+      </button>
+    )
   );
 }
 

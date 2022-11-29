@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import ChatMessage from "./ChatMessage";
+import Nav from "../components/Nav";
 
 const auth = firebase.auth();
 const firestore = firebase.firestore();
@@ -36,6 +37,7 @@ function ChatRoom() {
 
   return (
     <>
+       <Nav minimal={true} setShowModal={() => { }} showModal={false} />
       <main>
         {messages &&
           messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
@@ -50,7 +52,7 @@ function ChatRoom() {
           placeholder="say something nice"
         />
 
-        <button type="submit" disabled={!formValue}>
+        <button className="primary-button" disabled={!formValue}>
           SEND
         </button>
       </form>

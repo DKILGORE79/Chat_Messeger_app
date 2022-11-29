@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Nav from "../components/Nav";
 let newArray = [];
 
 function QuizComponent() {
@@ -102,14 +104,15 @@ function QuizComponent() {
   };
 
   return (
-    <div>
-      <h1>Initial Signup Questions!</h1>
-      <div className="container">
-        <div>{questions[currentQuestion].text}</div>
+    <>
+    <Nav minimal={true} setShowModal={() => { }} showModal={false} />
+    <div className="quiz-overlay">
+    <Card>
+      <Card.Header as="h2">{questions[currentQuestion].text}</Card.Header>
         <ul>
           {questions[currentQuestion].options.map((option) => {
             return (
-              <div>
+              <ListGroup className="list-container">
                 <input
                   key={option.questionId}
                   value={option.text}
@@ -118,13 +121,15 @@ function QuizComponent() {
                   onClick={handleCheck}
                 />
                 <span key={option.id}>{option.text}</span>
-              </div>
+                </ListGroup>
             );
           })}
         </ul>
-        <button onClick={nextQuestion}>Next Question</button>
+        <button className="primary-button" onClick={nextQuestion}>Next Question</button>
+      
+      </Card>
       </div>
-    </div>
+    </>
   );
 }
 
