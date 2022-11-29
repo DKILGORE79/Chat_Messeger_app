@@ -42,7 +42,7 @@ function App() {
       <section>
         <BrowserRouter>
           <Routes><Route path="/" element={<Home />}></Route>
-            {user ? <Route path="/chat" element={<OnBoarding />} /> : <Route path="/" element={<Home />} />}
+            {user ? <Route path="/chat" element={<ChatRoom />} /> : <Route path="/" element={<Home />} />}
           </Routes>
         </BrowserRouter>
       </section>
@@ -95,9 +95,9 @@ function ChatRoom() {
 
     <form onSubmit={sendMessage}>
 
-      <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="say something nice" />
+      <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="say hello" />
 
-      <button type="submit" disabled={!formValue}>🕊️</button>
+      <button type="submit" disabled={!formValue}>SEND</button>
 
     </form>
   </>)
@@ -111,7 +111,6 @@ function ChatMessage(props) {
 
   return (<>
     <div className={`message ${messageClass}`}>
-      <img src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} alt="pic" />
       <p>{text}</p>
     </div>
   </>)

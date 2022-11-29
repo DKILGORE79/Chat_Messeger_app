@@ -1,3 +1,13 @@
+import firebase from 'firebase/compat/app'
+import React, { useRef, useState } from 'react';
+import 'firebase/compat/firestore';
+import 'firebase/compat/auth'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { useAuthState } from "react-firebase-hooks/auth"
+import { useCollectionData } from 'react-firebase-hooks/firestore'
+import ChatMessage from './ChatMessage';
+const auth = firebase.auth();
+const firestore = firebase.firestore();
 function ChatRoom() {
     const dummy = useRef();
     const messagesRef = firestore.collection('messages');
@@ -37,7 +47,7 @@ function ChatRoom() {
 
             <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="say something nice" />
 
-            <button type="submit" disabled={!formValue}>🕊️</button>
+            <button type="submit" disabled={!formValue}>SEND</button>
 
         </form>
     </>)

@@ -15,9 +15,8 @@ const Dashboard = () => {
 
     const getUser = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/user', {
-                params: { userId }
-            })
+            console.log(cookies)
+            const response = await axios.get('/api/users/find?email=')
             setUser(response.data)
         } catch (error) {
             console.log(error)

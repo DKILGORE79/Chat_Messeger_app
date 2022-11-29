@@ -25,5 +25,10 @@ module.exports = {
         }
         const token = signToken(user);
         res.json({ token, user });
+    },
+    async findUser({ params }, res) {
+        const user = await User.findOne({ where: { email: params.email } });
+
+        return res.status(200).json(user);
     }
 }
