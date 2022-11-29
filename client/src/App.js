@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 //import logo from './logo.svg';
 import "./App.css";
 //import VideoChat from './components/room';
@@ -40,15 +40,13 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
-            {/* {user ? (
+            {user ? (
               <Route path="/onBoarding" element={<OnBoarding />} />
-          
             ) : (
               <Route path="/" element={<Home />} />
-       
             )}
             <Route path="/quiz" element={<QuizComponent />} />
-            <Route path="/chat" element={<ChatRoom />} /> */}
+            <Route path="/chat" element={<ChatRoom />} />
           </Routes>
         </BrowserRouter>
       </section>
@@ -66,67 +64,67 @@ function SignOut() {
   );
 }
 
-// function ChatRoom() {
-//   // const dummy = useRef();
-//   const messagesRef = firestore.collection("messages");
-//   const query = messagesRef.orderBy("createdAt").limit(25);
+function ChatRoom() {
+  const dummy = useRef();
+  const messagesRef = firestore.collection("messages");
+  const query = messagesRef.orderBy("createdAt").limit(25);
 
-//   const [messages] = useCollectionData(query, { idField: "id" });
+  const [messages] = useCollectionData(query, { idField: "id" });
 
-//   const [formValue, setFormValue] = useState("");
+  const [formValue, setFormValue] = useState("");
 
-//   const sendMessage = async (e) => {
-//     e.preventDefault();
+  const sendMessage = async (e) => {
+    e.preventDefault();
 
-//     const { uid, photoURL } = auth.currentUser;
+    const { uid, photoURL } = auth.currentUser;
 
-//     await messagesRef.add({
-//       text: formValue,
-//       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-//       uid,
-//       photoURL,
-//     });
+    await messagesRef.add({
+      text: formValue,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      uid,
+      photoURL,
+    });
 
-//     setFormValue("");
-//     // dummy?.current?.scrollIntoView({ behavior: "smooth" });
-//   };
+    setFormValue("");
+    dummy?.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
-//   return (
-//     <>
-//       <main>
-//         {messages &&
-//           messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
+  return (
+    <>
+      <main>
+        {messages &&
+          messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
 
-//         {/* <span ref={dummy}></span> */}
-//       </main>
+        <span ref={dummy}></span>
+      </main>
 
-//       <form onSubmit={sendMessage}>
-//         <input
-//           value={formValue}
-//           onChange={(e) => setFormValue(e.target.value)}
-//           placeholder="say hello"
-//         />
+      <form onSubmit={sendMessage}>
+        <input
+          value={formValue}
+          onChange={(e) => setFormValue(e.target.value)}
+          placeholder="say hello"
+        />
 
-//         <button type="submit" disabled={!formValue}>
-//           SEND
-//         </button>
-//       </form>
-//     </>
-//   );
-// }
+        <button type="submit" disabled={!formValue}>
+          SEND
+        </button>
+      </form>
+    </>
+  );
+}
 
-// function ChatMessage(props) {
-//   const { text, uid, photoURL } = props.message;
+function ChatMessage(props) {
+  const { text, uid, photoURL } = props.message;
 
-//   const messageClass = uid === auth.currentUser.uid ? "sent" : "received";
+  const messageClass = uid === auth.currentUser.uid ? "sent" : "received";
 
-//   return (
-//     <>
-//       <div className={`message ${messageClass}`}>
-//         <p>{text}</p>
-//       </div>
-//     </>
-//   );
-// }
+  return (
+    <>
+      <div className={`message ${messageClass}`}>
+        <p>{text}</p>
+      </div>
+    </>
+  );
+}
 
 export default App;

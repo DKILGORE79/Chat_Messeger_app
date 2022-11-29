@@ -1,5 +1,5 @@
 import firebase from "firebase/compat/app";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "firebase/compat/firestore";
 import "firebase/compat/auth";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -10,7 +10,7 @@ import ChatMessage from "./ChatMessage";
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 function ChatRoom() {
-  // const dummy = useRef();
+  const dummy = useRef();
   const messagesRef = firestore.collection("messages");
   const query = messagesRef.orderBy("createdAt").limit(25);
 
@@ -31,7 +31,7 @@ function ChatRoom() {
     });
 
     setFormValue("");
-    // dummy?.current?.scrollIntoView({ behavior: "smooth" });
+    dummy?.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -40,7 +40,7 @@ function ChatRoom() {
         {messages &&
           messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
 
-        {/* <span ref={dummy}></span> */}
+        <span ref={dummy}></span>
       </main>
 
       <form onSubmit={sendMessage}>

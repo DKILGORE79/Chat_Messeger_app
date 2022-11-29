@@ -10,7 +10,7 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
   const [password, setPassword] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
   const [error, setError] = useState(null);
-  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  // const [cookies, setCookie, removeCookie] = useCookies(["user"]);
 
   let navigate = useNavigate();
 
@@ -36,8 +36,8 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
         })
         .then(firebaseAuth());
 
-      setCookie("AuthToken", response.data.token);
-      setCookie("UserId", response.data.userId);
+      // setCookie("AuthToken", response.data.token);
+      // setCookie("UserId", response.data.userId);
 
       const success = response.status === 201;
 
