@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 let newArray = [];
 
 function QuizComponent() {
-
+  let navigate = useNavigate()
   const questions = [
     {
       text: "What is your favorite book genre?",
@@ -49,7 +51,8 @@ function QuizComponent() {
     },
   ];
 
-  function finishSignup(newArray) {
+  function finishSignup() {
+    navigate("/chat")
     // THIS FUNCTION WILL PASS IN newArray to then get it in the DB. This function will also move the user into a different page.
     // some sort of code that finds the specific answer by the questionId which will 0, 1, or 2, and pushes it to the sequelize DB.
   }
@@ -93,7 +96,7 @@ function QuizComponent() {
       //Handle form submission, newArray has what the database needs in terms of the final array.
       console.log(newArray);
 
-      finishSignup(newArray);
+      finishSignup();
 
 
       //

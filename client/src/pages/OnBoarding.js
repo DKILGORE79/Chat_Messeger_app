@@ -24,6 +24,7 @@ const OnBoarding = () => {
 
     const handleSubmit = async (e) => {
         console.log("submitted");
+        navigate("/quiz");
         e.preventDefault();
         try {
             const response = await axios.put("http://localhost:8000/user", {
@@ -31,7 +32,7 @@ const OnBoarding = () => {
             });
             console.log(response);
             const success = response.status === 200;
-            if (success) navigate("/dashboard");
+            if (success) navigate("/quiz");
         } catch (err) {
             console.log(err);
         }

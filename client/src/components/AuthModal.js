@@ -97,7 +97,7 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
                 // Signed in 
                 const user = userCredential.user;
                 // ...
-                navigate('/chat')
+                navigate('/onBoarding')
                 console.log(email)
             })
             .catch((error) => {
@@ -113,7 +113,7 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
                 // Signed in 
                 const user = userCredential.user;
                 // ...
-                navigate('/chat')
+                navigate('/onBoarding')
             })
             .catch((error) => {
                 const errorCode = error.code;

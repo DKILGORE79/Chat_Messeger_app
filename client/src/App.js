@@ -14,6 +14,7 @@ import Dashboard from './pages/Dashboard';
 import ChatContainer from './components/ChatContainer';
 import Nav from './components/Nav';
 import QuizComponent from './components/QuizComponent';
+import Chat from './components/Chat';
 
 firebase.initializeApp({
   apiKey: "AIzaSyCKyB1MNt4OocE6iJrLmzoh_7A-ebar20o",
@@ -42,7 +43,9 @@ function App() {
       <section>
         <BrowserRouter>
           <Routes><Route path="/" element={<Home />}></Route>
-            {user ? <Route path="/chat" element={<ChatRoom />} /> : <Route path="/" element={<Home />} />}
+            {user ? <Route path="/onBoarding" element={<OnBoarding />} /> : <Route path="/" element={<Home />} />}
+            <Route path="/quiz" element={<QuizComponent />} />
+            <Route path="/chat" element={<ChatRoom />} />
           </Routes>
         </BrowserRouter>
       </section>
