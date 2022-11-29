@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 //import logo from './logo.svg';
 import "./App.css";
 //import VideoChat from './components/room';
@@ -8,13 +8,13 @@ import "firebase/compat/auth";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import OnBoarding from "./pages/OnBoarding";
-import Home from "./pages/Home";
-import Dashboard from "./pages/Dashboard";
-import ChatContainer from "./components/ChatContainer";
-import Nav from "./components/Nav";
-import QuizComponent from "./components/QuizComponent";
-import Chat from "./components/Chat";
+// import OnBoarding from "./pages/OnBoarding";
+// import Home from "./pages/Home";
+// import Dashboard from "./pages/Dashboard";
+// import ChatContainer from "./components/ChatContainer";
+// import Nav from "./components/Nav";
+// import QuizComponent from "./components/QuizComponent";
+// import Chat from "./components/Chat";
 
 firebase.initializeApp({
   apiKey: "AIzaSyCKyB1MNt4OocE6iJrLmzoh_7A-ebar20o",
@@ -34,20 +34,20 @@ function App() {
 
   return (
     <div className="App">
-      <header><SignOut /></header>
+      <header>{/* <SignOut /> */}</header>
 
       <section>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Home />} />
+            {/* <Route path="/" element={<Home />} /> */}
             {/* {user ? (
-              <Route path="/onBoarding" element={<OnBoarding />} />
-          
+              // <Route path="/onBoarding" element={<OnBoarding />} />
+              <div></div>
             ) : (
-              <Route path="/" element={<Home />} />
-       
-            )}
-            <Route path="/quiz" element={<QuizComponent />} />
+              // <Route path="/" element={<Home />} />
+              <div></div>
+            )} */}
+            {/* <Route path="/quiz" element={<QuizComponent />} />
             <Route path="/chat" element={<ChatRoom />} /> */}
           </Routes>
         </BrowserRouter>
@@ -56,18 +56,18 @@ function App() {
   );
 }
 
-function SignOut() {
-  return (
-    auth.currentUser && (
-      <button className="sign-out" onClick={() => auth.signOut()}>
-        Sign Out
-      </button>
-    )
-  );
-}
+// function SignOut() {
+//   return (
+//     auth.currentUser && (
+//       <button className="sign-out" onClick={() => auth.signOut()}>
+//         Sign Out
+//       </button>
+//     )
+//   );
+// }
 
 // function ChatRoom() {
-//   // const dummy = useRef();
+//   const dummy = useRef();
 //   const messagesRef = firestore.collection("messages");
 //   const query = messagesRef.orderBy("createdAt").limit(25);
 
@@ -88,7 +88,7 @@ function SignOut() {
 //     });
 
 //     setFormValue("");
-//     // dummy?.current?.scrollIntoView({ behavior: "smooth" });
+//     dummy.current.scrollIntoView({ behavior: "smooth" });
 //   };
 
 //   return (
@@ -97,7 +97,7 @@ function SignOut() {
 //         {messages &&
 //           messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
 
-//         {/* <span ref={dummy}></span> */}
+//         <span ref={dummy}></span>
 //       </main>
 
 //       <form onSubmit={sendMessage}>
