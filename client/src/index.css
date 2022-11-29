@@ -49,7 +49,7 @@ h3 {
   font-weight: 500;
   font-size: 15px;
   text-transform: uppercase;
-  padding: 12px 30px;
+  padding: 5px 30px;
   border-radius: 30px;
   border: solid 2px rgb(121, 119, 119);
   margin: 6px;
@@ -171,7 +171,7 @@ nav .logo-container .logo {
   margin: 10px 0;
 }
 
-.onboarding form .multiple-input-container {
+.onboarding form .multiple-input-container {exit
   display: flex;
   flex-direction: row;
 }
@@ -262,7 +262,7 @@ nav .logo-container .logo {
 
 /*-------- Chat Container --------*/
 .chat-container {
-  background-color: #3075ff;
+  background-color: #29abe2;
   max-height: 500px;
   display: flex;
   flex-direction: column;
@@ -327,7 +327,6 @@ nav .logo-container .logo {
   display: flex;
   flex-direction: column;
 }
-
 
 
 .quiz-container {

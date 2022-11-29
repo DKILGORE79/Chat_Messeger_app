@@ -95,7 +95,7 @@ function ChatRoom() {
           onChange={(e) => setFormValue(e.target.value)}
           placeholder="say hello"
         />
-          <button className="primary-button" disabled={!formValue}>
+          <button className="secondary-button" disabled={!formValue}>
           SEND
         </button>
       </form>
