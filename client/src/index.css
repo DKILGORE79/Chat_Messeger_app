@@ -271,6 +271,16 @@ nav .logo-container .logo {
   font-size: 20px;
   color: white;
 }
+.chat-overly {
+width: 100vw;
+height: 100vh;
+position: fixed;
+background: linear-gradient(to bottom,
+    rgba(0, 119, 255, 0.65) 0%,
+    rgba(0, 0, 0, 0) 100%), url('images/guy laptop.webp')
+
+}
+
 
 .chat-container .chat-container-header {
   background: linear-gradient(45deg, rgb(254, 48, 114), rgb(255, 89, 64));
@@ -282,11 +292,16 @@ nav .logo-container .logo {
 
 .chat-container .option {
   border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: rgb(255, 255, 255);
   -webkit-text-fill-color: #29abe2;
   font-size: 20px;
   margin: 2px;
-  padding: 10px;
+  width: 800px;
+  scroll-behavior: auto;
 }
 
 .chat-container .option:disabled {
@@ -395,4 +410,12 @@ body{margin-top:20px;}
 }
 .border-top {
     border-top: 1px solid #dee2e6!important;
+}
+
+.message-sent{
+  margin-right: auto
+}
+.message-received {
+  flex-direction: row-reverse;
+  margin-left: auto
 }
