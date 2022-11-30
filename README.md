@@ -4,7 +4,7 @@
 
 We have created an app that asks users to create an account and sign in. Once the user has signed in they are prompted with a onboarding screen that takes a users information and then once they submit the answers they are presented with questions to hopefully match them with another user. Once matched the user will be brought to a chat room to talk to the matched users. We wanted to create this app to match college students who are attending a College to be able to find other College students who they could potentially be friends with and create a better college atmosphere.
 
-## Table of Contents (Optional)
+## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
@@ -17,11 +17,12 @@ You can install the app by running npm init -y to create a node app. Then run np
 
 ## Usage
 
-<!-- need to add photos for our README.MD -->
+The deployed application is linked [here!](https://evening-scrubland-87400.herokuapp.com/)
 
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
+![Login page](./client/src/images/likemindz.PNG)
+![Onboarding](./client/src/images/likemindzonboarding.PNG)
+![Quiz](./client/src/images/likemindzquiz.PNG)
+![Chat](./client/src/images/chat.PNG)
 
 ## Credits
 
